@@ -42,4 +42,10 @@ class RPSGame:
         print(f"컴퓨터 선택: {self.choices[self.computer_choice]}")
         print(f"결과: {self.determine_winner()}")
 
-RPSGame().play()   
+while True:
+    RPSGame().play()
+    again = input("다시 하시겠습니까? (y/n): ").strip().lower()
+    if again != 'y':
+        print("게임을 종료합니다.")
+        break
+    
