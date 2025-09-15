@@ -42,4 +42,4 @@ class RPSGame:
         print(f"컴퓨터 선택: {self.choices[self.computer_choice]}")
         print(f"결과: {self.determine_winner()}")
 
-RPSGame().play()
+RPSGame().play()   
