@@ -37,3 +37,13 @@ class Product:
 
     def __str__(self):
         return f'상품명: {self.product_name}, 가격: {self.product_price}, 재고: {self.product_stock}'
+
+products = [
+    Product("노트북", 1000000, 10),
+    Product("스마트폰", 500000, 20),
+    Product("태블릿", 300000, 15)
+]    
+# 노트북의 가격을 20% 인하
+# 스마트폰은 가격을 10% 인상
+
+# 제품 출력
