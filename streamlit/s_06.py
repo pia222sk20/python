@@ -22,30 +22,9 @@ def show_game2():
     st.header("가위바위보")
     st.write("환영합니다! 이곳은 가위바위보 게임 페이지입니다.")        
     
-# def show_dashboard():
-#     st.header("대시보드")
-#     col1, col2 = st.columns(2)
-#     with col1:
-#         st.metric(label="온도", value="24°C", delta="1.2°C")
-#     with col2:
-#         st.metric(label="습도", value="80%", delta="-5%")
-    
-# def show_settings():
-#     st.header("설정")
-#     st.text_input("사용자 이름")
-#     st.slider("알림 주기", 0, 100, 50)
-    
-# def show_help():
-#     st.header("도움말")
-#     st.write("도움이 필요하시다면 아래 연락처로 문의해주세요:")
-#     st.write("이메일: help@example.com")
-
 # 선택된 메뉴에 따라 해당하는 컨텐츠 표시
 if selected_menu == "숫자맞추기":
     show_game1()
 elif selected_menu == "가위바위보":
     show_game2()
-# elif selected_menu == "설정":
-#     show_settings()
-# elif selected_menu == "도움말":
-#     show_help()
+
