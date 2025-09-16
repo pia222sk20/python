@@ -23,10 +23,12 @@ def show_game1():
 
     if 'c_number' not in st.session_state:
         st.session_state.c_number = random.randint(1, 100)    
-    c_num = st.session_state.c_number        
-    h_number = st.number_input("1에서 100 사이의 숫자를 입력하세요:", 1, 100)
-    
-    if st.button("확인"):
+    c_num = st.session_state.c_number
+
+    st.number_input("1에서 100 사이의 숫자를 입력하세요:", 0, 100, key='h_number')
+    h_number = st.session_state.h_number
+    # st.write(f"입력한 숫자: {h_number}")     
+    if h_number != 0:        
         if h_number < c_num:
             st.warning("예측한 값이 낮습니다.")
         elif h_number > c_num:
