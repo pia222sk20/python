@@ -1,4 +1,7 @@
 import streamlit as st
+import random
+from streamlit_autorefresh import st_autorefresh
+
 
 # 페이지 기본 설정
 st.set_page_config(
@@ -39,21 +42,21 @@ def show_game1():
             del st.session_state.c_number    
 
 
-def show_game2():
-    st.header("가위바위보")
-    st.write("환영합니다! 이곳은 가위바위보 게임 페이지입니다.")    
-    # 가위.png 바위.png 보.png  이미지를 출력하고 다음 이미지를 대처하는 방식으로 연속 출력
-    # 이미지 파일 경로
-    scissors_img = "C:\\python_src\\streamlit\\가위.png"
-    rock_img = "C:\\python_src\\streamlit\\바위.png"
-    paper_img = "C:\\python_src\\streamlit\\보.png"
-    images = [scissors_img, rock_img, paper_img]
-    placeholder = st.empty()  
-    import time  
-    for i in range(100):
-        img_path = random.choice(images)
-        time.sleep(0.05)
-        placeholder.image(img_path, width=200)
+def show_game2():    
+
+    # 이미지 경로 (예시)
+    images = {
+        0: "C:\python_src\streamlit\가위.png",  # 가위
+        1: "C:\python_src\streamlit\바위.png",      # 바위
+        2: "C:\python_src\streamlit\보.png"      # 보
+    }    
+    # gif 파일 출력    
+    gif_path = r"C:\python_src\streamlit\merged.gif"
+
+    st.markdown(
+        f'<img src="file:///{gif_path}" width="200">',
+        unsafe_allow_html=True
+    )
 
     
 # 선택된 메뉴에 따라 해당하는 컨텐츠 표시
