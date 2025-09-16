@@ -41,7 +41,20 @@ def show_game1():
 
 def show_game2():
     st.header("가위바위보")
-    st.write("환영합니다! 이곳은 가위바위보 게임 페이지입니다.")        
+    st.write("환영합니다! 이곳은 가위바위보 게임 페이지입니다.")    
+    # 가위.png 바위.png 보.png  이미지를 출력하고 다음 이미지를 대처하는 방식으로 연속 출력
+    # 이미지 파일 경로
+    scissors_img = "C:\\python_src\\streamlit\\가위.png"
+    rock_img = "C:\\python_src\\streamlit\\바위.png"
+    paper_img = "C:\\python_src\\streamlit\\보.png"
+    images = [scissors_img, rock_img, paper_img]
+    placeholder = st.empty()  
+    import time  
+    for i in range(100):
+        img_path = random.choice(images)
+        time.sleep(0.05)
+        placeholder.image(img_path, width=200)
+
     
 # 선택된 메뉴에 따라 해당하는 컨텐츠 표시
 if selected_menu == "숫자맞추기":
