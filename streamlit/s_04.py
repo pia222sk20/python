@@ -15,8 +15,12 @@ st.area_chart(datas)
 
 st.write('1x2 layout')
 col1, col2 = st.columns(2)
-col1.bar_chart(datas)
-col2.line_chart(datas)
+with col1:
+    st.write('막대그래프')
+    st.bar_chart(datas)
+with col2:
+    st.write('선그래프')
+    st.line_chart(datas)
 
 st.write('2x2 layout')
 col1, col2 = st.columns(2)
