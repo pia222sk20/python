@@ -3,6 +3,7 @@ import streamlit as st
 # 페이지 기본 설정
 st.set_page_config(
     page_title="Streamlit 레이아웃 예제",
+    page_icon=":heart_eyes:",
     layout="wide"  # 전체 페이지를 wide 모드로 설정
 )
 
@@ -15,9 +16,27 @@ with st.sidebar:
     )
 
 # 메인 컨텐츠 영역
+import random
 def show_game1():
     st.header("숫자맞추기")
     st.write("환영합니다! 이곳은 숫자맞추기 게임 페이지입니다.")
+
+    if 'c_number' not in st.session_state:
+        st.session_state.c_number = random.randint(1, 100)    
+    c_num = st.session_state.c_number        
+    h_number = st.number_input("1에서 100 사이의 숫자를 입력하세요:", 1, 100)
+    
+    if st.button("확인"):
+        if h_number < c_num:
+            st.warning("예측한 값이 낮습니다.")
+        elif h_number > c_num:
+            st.warning("예측한 값이 높습니다.")
+        else:
+            st.balloons()
+            st.success(f"정답! {c_num}였습니다.")
+            del st.session_state.c_number    
+
+
 def show_game2():
     st.header("가위바위보")
     st.write("환영합니다! 이곳은 가위바위보 게임 페이지입니다.")        
