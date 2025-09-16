@@ -1,8 +1,9 @@
 import streamlit as st
 import random
 # 컴퓨터 숫자 선택
-c_num = random.randint(1,100)
-st.write('컴퓨터 숫자:',c_num)
+if 'c_num' not in st.session_state:
+    st.session_state['c_num'] = random.randint(1,100)
+c_num = st.session_state.c_num
 # 숫자 입력 1~100 사이
 h_num = st.number_input('숫자 입력',1,100)
 
