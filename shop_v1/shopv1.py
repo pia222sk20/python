@@ -28,13 +28,7 @@ def create_customer(name):
         cur.execute(sql, name)
         conn.commit()
     print('고객추가 완료')
-
-# [
-#         {"회원아이디": "user01", "회원이름": "홍길동"},
-#         {"회원아이디": "user02", "회원이름": "이몽룡"},
-#         {"회원아이디": "user03", "회원이름": "성춘향"}
-#     ]
-
+    
 def readAll_customers(isDict = False):
     sql = 'select * from customer'     
     result = []
