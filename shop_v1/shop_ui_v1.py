@@ -5,9 +5,9 @@ import shopdbmng
 st.set_page_config(layout="wide")
 
 # 초기 회원 데이터
-if "members" not in st.session_state:
-    datas = shopdbmng.readAll_customers()
-    st.session_state.members = pd.DataFrame(datas)
+if "members" not in st.session_state:    
+    st.session_state.members = pd.DataFrame(columns=['회원아이디','회원이름'])
+    print('sesson init....................',st.session_state.members)
 
 # 현재 선택된 회원
 if "selected_member_index" not in st.session_state:
@@ -22,6 +22,8 @@ left_col, right_col = st.columns([1, 3])
 with left_col:
     st.header("회원")
     if st.button("회원 리스트 보기"):
+        datas = shopdbmng.readAll_customers()       
+        st.session_state.members = pd.DataFrame(datas)
         st.session_state.show_list = True
 
 # ------------------------------------------
@@ -60,18 +62,19 @@ with right_col:
         col_a, col_b = st.columns(2)
         with col_a:
             if st.button("수정/저장"):
-                if st.session_state.selected_member_index is not None:
-                    st.session_state.members.at[st.session_state.selected_member_index, "회원아이디"] = member_id
-                    st.session_state.members.at[st.session_state.selected_member_index, "회원이름"] = member_name
-                    print('****',member_id,member_name,type(member_id), type(member_name))
-                    shopdbmng.update_customer(member_id,member_name)
-                    st.rerun()
-                else:
-                    st.session_state.members.loc[len(st.session_state.members)] = {"회원아이디": member_id, "회원이름": member_name}
-                    # 데이터 추가 로직
-                    shopdbmng.create_customer(member_name)
-                    del st.session_state.members
-                    st.rerun()
+                    if st.session_state.selected_member_index is not None:
+                        # 기존 회원 수정
+                        st.session_state.members.at[st.session_state.selected_member_index, "회원아이디"] = member_id
+                        st.session_state.members.at[st.session_state.selected_member_index, "회원이름"] = member_name
+                        shopdbmng.update_customer(member_id, member_name)
+                        st.rerun()
+                    else:
+                        # 신규 회원 추가 (concat 사용)
+                        new_row = pd.DataFrame([{"회원아이디": member_id, "회원이름": member_name}])
+                        st.session_state.members = pd.concat([st.session_state.members, new_row], ignore_index=True)
+                        shopdbmng.create_customer(member_name)
+                        st.session_state.selected_member_index = None
+                        st.rerun()
         with col_b:
             if st.button("입력 초기화"):
                 st.session_state.selected_member_index = None
