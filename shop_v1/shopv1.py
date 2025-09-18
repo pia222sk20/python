@@ -51,7 +51,7 @@ def readAll_customers(isDict = False):
                 result.append(
                     {"회원아이디": c[0], "회원이름": c[1]}
                     )    
-    print(f'조회완료 {result}')    
+    print(f'조회완료')    
     return result
 
 def update_customer(customer_id, name):
