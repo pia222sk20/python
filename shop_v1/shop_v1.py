@@ -24,24 +24,24 @@ print('접속성공')
 # 고객 - customer
 def create_customer(name):
     sql = 'insert into customer values(null,%s)'
-    cur = conn.cursor()
-    cur.execute(sql, name)
-    conn.commit()
+    with conn.cursor() as cur:
+        cur.execute(sql, name)
+        conn.commit()
     print('고객추가 완료')
 
 def readAll_customers(isDict = False):
     sql = 'select * from customer'     
     
     if isDict:
-        cur = conn.cursor(pymysql.cursors.DictCursor)
-        cur.execute(sql)
-        for c in cur.fetchall():             
-            print(f"{c['customer_id']}  {c['name']}")
+        with conn.cursor(pymysql.cursors.DictCursor) as cur:
+            cur.execute(sql)
+            for c in cur.fetchall():             
+                print(f"{c['customer_id']}  {c['name']}")
     else:
-        cur = conn.cursor()
-        cur.execute(sql)
-        for c in cur.fetchall():            
-            print(f'{c[0]}  {c[1]}')
+        with conn.cursor() as cur:
+            cur.execute(sql)
+            for c in cur.fetchall():            
+                print(f'{c[0]}  {c[1]}')
     print('조회완료')    
 
 def update_customer(customer_id, name):
@@ -52,9 +52,16 @@ def update_customer(customer_id, name):
     '''
 
     with conn.cursor() as cur:
-        cur.execute(sql, (customer_id,name)  )    
+        cur.execute(sql, (name,customer_id)  )    
     conn.commit()
-
+    print(f'업데이트 되었습니다.{customer_id} {name}')
+    
+def delete_customer(customer_id):
+    sql = 'delete from customer where customer_id=%'
+    with conn.cursor() as cur:
+        cur.execute(sql,customer_id)
+    conn.commit()
+    print(f'삭제되었습니다. {customer_id}')
 
 # 3.메소드
     # 회원가입
