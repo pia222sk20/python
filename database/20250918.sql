@@ -101,3 +101,12 @@ drop database if exists shopdb;
 상품정보 입력
 대쉬보드 : 고객별 상품별 구매회수, 평균구매액
 */
+
+select * from customer;
+insert into customer values(null,'홍길동');
+
+update customer 
+set name = '강감찬'
+where customer_id = 1;
+
+delete from customer;
