@@ -7,13 +7,13 @@ import os
 load_dotenv()
 
 # 1. DB 연결
-conn = pymysql.connect(
-    host = os.getenv('DB_HOST'),
-    user = os.getenv('DB_USER'),
-    password = os.getenv('DB_PASSWORD'),
-    database=os.getenv('DB_NAME')
-)
-print('접속성공')
+def get_connection():
+    return pymysql.connect(
+        host = os.getenv('DB_HOST'),
+        user = os.getenv('DB_USER'),
+        password = os.getenv('DB_PASSWORD'),
+        database=os.getenv('DB_NAME')
+    )
 
 # 2. 각 테이블별 
     # C - insert
@@ -23,55 +23,49 @@ print('접속성공')
 
 # 고객 - customer
 def create_customer(name):
-    sql = 'insert into customer values(null,%s)'
-    with conn.cursor() as cur:
-        cur.execute(sql, name)
-        conn.commit()
-    print('고객추가 완료')
-    
-def readAll_customers(isDict = False):
-    sql = 'select * from customer'     
-    result = []
-    if isDict:
-        with conn.cursor(pymysql.cursors.DictCursor) as cur:
-            cur.execute(sql)
-            for c in cur.fetchall():             
-                print(f"{c['customer_id']}  {c['name']}")
-    else:
+    with get_connection() as conn:
+        sql = 'insert into customer values(null,%s)'
         with conn.cursor() as cur:
-            cur.execute(sql)
-            for c in cur.fetchall():            
-                print(f'{c[0]}  {c[1]}')
-                result.append(
-                    {"회원아이디": c[0], "회원이름": c[1]}
-                    )    
-    print(f'조회완료')    
-    return result
+            cur.execute(sql, name)
+            conn.commit()        
+
+def readAll_customers(isDict = False):
+    with get_connection() as conn:
+        sql = 'select * from customer'     
+        result = []
+        if isDict:
+            with conn.cursor(pymysql.cursors.DictCursor) as cur:
+                cur.execute(sql)
+                for c in cur.fetchall():             
+                    print(f"{c['customer_id']}  {c['name']}")
+        else:
+            with conn.cursor() as cur:
+                cur.execute(sql)
+                for c in cur.fetchall():            
+                    print(f'{c[0]}  {c[1]}')
+                    result.append(
+                        {"회원아이디": c[0], "회원이름": c[1]}
+                        )
+        return result
 
 def update_customer(customer_id, name):
-    sql = '''
-        update customer 
-            set name = %s
-        where customer_id = %s
-    '''
+    with get_connection() as conn:
+        sql = '''
+            update customer 
+                set name = %s
+            where customer_id = %s
+        '''
 
-    with conn.cursor() as cur:
-        cur.execute(sql, (name,customer_id)  )    
-    conn.commit()
-    print(f'업데이트 되었습니다.{customer_id} {name}')
+        with conn.cursor() as cur:
+            cur.execute(sql, (name,customer_id)  )    
+        conn.commit()        
 
 def delete_customer(customer_id):
-    sql = 'delete from customer where customer_id=%s'
-    with conn.cursor() as cur:
-        cur.execute(sql,customer_id)
-    conn.commit()
-    print(f'삭제되었습니다. {customer_id}') 
-
-create_customer('abc')
-readAll_customers()
-update_customer(1,'abc')
-delete_customer(1)
-
+    with get_connection() as conn:
+        sql = 'delete from customer where customer_id=%s'
+        with conn.cursor() as cur:
+            cur.execute(sql,customer_id)
+        conn.commit()        
 
 # 3.메소드
     # 회원가입
