@@ -3,8 +3,6 @@ import pandas as pd
 import shopv1
 
 datas = shopv1.readAll_customers()
-
-
 st.set_page_config(layout="wide")
 
 # 초기 회원 데이터
@@ -44,7 +42,8 @@ with right_col:
         for i, row in st.session_state.members.iterrows():
             col1, col2, col3, col4 = st.columns([2, 2, 1, 1])
             with col1:
-                if st.button(row["회원아이디"], key=f"id_{i}"):
+                print('***********', row["회원아이디"])                
+                if st.button(str(row["회원아이디"]), key=f"id_{i}"):
                     st.session_state.selected_member_index = i
             with col2:
                 if st.button(row["회원이름"], key=f"name_{i}"):
@@ -87,4 +86,4 @@ with right_col:
         with col_b:
             if st.button("입력 초기화"):
                 st.session_state.selected_member_index = None
-                st.experimental_rerun()
+                st.rerun()

@@ -88,4 +88,4 @@ delete_customer(1)
 
 # 4 기능구현과 테스트가 되면..  streamlit으로 UI 구성 - 템플릿화면을 보고 유사한 형태로 구현
 
-conn.close()  # 접속해제
+# conn.close()  # 접속해제
