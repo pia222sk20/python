@@ -41,3 +41,20 @@ from payment
 	group by customer_id
     order by max desc, avg desc
 ;
+
+-- rollup  총합과 단위합  group by 절과 함께 사용
+-- 고객별  총 결제금액 + 전체 합계
+select 
+customer_id,
+staff_id,
+sum(amount)
+from payment
+group by customer_id,staff_id with rollup
+;
+
+select 
+year(payment_date), month(payment_date) ,
+sum(amount)
+from payment
+group by year(payment_date), month(payment_date) with rollup 
+;
