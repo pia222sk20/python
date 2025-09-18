@@ -1,15 +1,22 @@
 import streamlit as st
 import pandas as pd
+import shopv1
+
+datas = shopv1.readAll_customers()
+
 
 st.set_page_config(layout="wide")
 
 # 초기 회원 데이터
 if "members" not in st.session_state:
-    st.session_state.members = pd.DataFrame([
-        {"회원아이디": "user01", "회원이름": "홍길동"},
-        {"회원아이디": "user02", "회원이름": "이몽룡"},
-        {"회원아이디": "user03", "회원이름": "성춘향"}
-    ])
+    st.session_state.members = pd.DataFrame(
+    #     [
+    #     {"회원아이디": "user01", "회원이름": "홍길동"},
+    #     {"회원아이디": "user02", "회원이름": "이몽룡"},
+    #     {"회원아이디": "user03", "회원이름": "성춘향"}
+    # ]
+    datas
+    )
 
 # 현재 선택된 회원
 if "selected_member_index" not in st.session_state:
