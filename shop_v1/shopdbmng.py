@@ -27,7 +27,7 @@ def create_customer(name):
         sql = 'insert into customer values(null,%s)'
         with conn.cursor() as cur:
             cur.execute(sql, name)
-            conn.commit()        
+        conn.commit()        
 
 def readAll_customers(isDict = False):
     with get_connection() as conn:
@@ -36,17 +36,18 @@ def readAll_customers(isDict = False):
         if isDict:
             with conn.cursor(pymysql.cursors.DictCursor) as cur:
                 cur.execute(sql)
-                for c in cur.fetchall():             
-                    print(f"{c['customer_id']}  {c['name']}")
+                for c in cur.fetchall():                                 
+                    result.append(
+                        {"회원아이디": c['customer_id'], "회원이름": c['name']}
+                        )
         else:
             with conn.cursor() as cur:
                 cur.execute(sql)
-                for c in cur.fetchall():            
-                    print(f'{c[0]}  {c[1]}')
+                for c in cur.fetchall():                                
                     result.append(
                         {"회원아이디": c[0], "회원이름": c[1]}
                         )
-        return result
+    return result
 
 def update_customer(customer_id, name):
     with get_connection() as conn:
