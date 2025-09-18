@@ -29,9 +29,15 @@ def create_customer(name):
         conn.commit()
     print('고객추가 완료')
 
+# [
+#         {"회원아이디": "user01", "회원이름": "홍길동"},
+#         {"회원아이디": "user02", "회원이름": "이몽룡"},
+#         {"회원아이디": "user03", "회원이름": "성춘향"}
+#     ]
+
 def readAll_customers(isDict = False):
     sql = 'select * from customer'     
-    
+    result = []
     if isDict:
         with conn.cursor(pymysql.cursors.DictCursor) as cur:
             cur.execute(sql)
@@ -42,7 +48,11 @@ def readAll_customers(isDict = False):
             cur.execute(sql)
             for c in cur.fetchall():            
                 print(f'{c[0]}  {c[1]}')
-    print('조회완료')    
+                result.append(
+                    {"회원아이디": c[0], "회원이름": c[1]}
+                    )    
+    print(f'조회완료 {result}')    
+    return result
 
 def update_customer(customer_id, name):
     sql = '''
