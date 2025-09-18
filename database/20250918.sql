@@ -83,4 +83,21 @@ where customer_id = 1;
 
 select * from customer_backup where customer_id = 1; 
 delete from customer_backup
-where customer_id = 1; 
+where customer_id = 1;
+
+-- shopdb 삭제
+drop database if exists shopdb;
+
+/*
+요구사항 분석
+쇼핑몰 database shopdb
+고객정보(고객id,이름)
+상품정보(상품id,이름,단가,수량)
+주문정보(고객id,상품id,구매가격)
+
+액션: 회원가입
+상품정보 출력
+상품구입
+상품정보 입력
+대쉬보드 : 고객별 상품별 구매회수, 평균구매액
+*/
