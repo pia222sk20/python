@@ -1,12 +1,12 @@
 import streamlit as st
 import pandas as pd
-import shopv1
+import shopdbmng
 
 st.set_page_config(layout="wide")
 
 # 초기 회원 데이터
 if "members" not in st.session_state:
-    datas = shopv1.readAll_customers()
+    datas = shopdbmng.readAll_customers()
     st.session_state.members = pd.DataFrame(datas)
 
 # 현재 선택된 회원
@@ -64,12 +64,12 @@ with right_col:
                     st.session_state.members.at[st.session_state.selected_member_index, "회원아이디"] = member_id
                     st.session_state.members.at[st.session_state.selected_member_index, "회원이름"] = member_name
                     print('****',member_id,member_name,type(member_id), type(member_name))
-                    shopv1.update_customer(member_id,member_name)
+                    shopdbmng.update_customer(member_id,member_name)
                     st.rerun()
                 else:
                     st.session_state.members.loc[len(st.session_state.members)] = {"회원아이디": member_id, "회원이름": member_name}
                     # 데이터 추가 로직
-                    shopv1.create_customer(member_name)
+                    shopdbmng.create_customer(member_name)
                     del st.session_state.members
                     st.rerun()
         with col_b:
