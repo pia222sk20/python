@@ -13,7 +13,7 @@ CREATE TABLE usertbl (
     birthyear  INT NOT NULL,                   -- 출생년도
     height     INT,                            -- 키
     addr       CHAR(2)                         -- 지역 (예: '서울', '경남')
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 -- 더미 데이터 50개 삽입
 INSERT INTO usertbl (name, birthyear, height, addr) VALUES
