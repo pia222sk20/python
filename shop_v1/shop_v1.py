@@ -63,6 +63,12 @@ def delete_customer(customer_id):
     conn.commit()
     print(f'삭제되었습니다. {customer_id}') 
 
+create_customer('abc')
+readAll_customers()
+update_customer(1,'abc')
+delete_customer(1)
+
+
 # 3.메소드
     # 회원가입
     # 상품정보 출력
