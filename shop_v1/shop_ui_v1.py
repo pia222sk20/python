@@ -41,8 +41,7 @@ with right_col:
         # 회원 리스트 테이블
         for i, row in st.session_state.members.iterrows():
             col1, col2, col3, col4 = st.columns([2, 2, 1, 1])
-            with col1:
-                print('***********', row["회원아이디"])                
+            with col1:                
                 if st.button(str(row["회원아이디"]), key=f"id_{i}"):
                     st.session_state.selected_member_index = i
             with col2:
