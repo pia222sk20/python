@@ -42,8 +42,18 @@ def readAll_customers(isDict = False):
         cur.execute(sql)
         for c in cur.fetchall():            
             print(f'{c[0]}  {c[1]}')
-    print('조회완료')
-    
+    print('조회완료')    
+
+def update_customer(customer_id, name):
+    sql = '''
+        update customer 
+            set name = %s
+        where customer_id = %s
+    '''
+
+    with conn.cursor() as cur:
+        cur.execute(sql, (customer_id,name)  )    
+    conn.commit()
 
 
 # 3.메소드
