@@ -71,3 +71,16 @@ select * from customer_backup;
 -- customer_backup 테이블에 데이터를 추가
 insert into customer_backup 
 select * from customer where customer_id > 10;
+
+
+-- update customer_id가 1인 고객의 activer 0으로 수정
+select * from customer_backup where customer_id = 1; 
+
+update customer_backup 
+set active = 0, address_id=4
+where customer_id = 1;
+
+
+select * from customer_backup where customer_id = 1; 
+delete from customer_backup
+where customer_id = 1; 
