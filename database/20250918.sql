@@ -58,3 +58,16 @@ sum(amount)
 from payment
 group by year(payment_date), month(payment_date) with rollup 
 ;
+
+
+select * from customer;
+
+
+-- customer_backup 테이블 생성 및 데이터 추가
+create table customer_backup
+select * from customer where customer_id <= 10;
+
+select * from customer_backup;
+-- customer_backup 테이블에 데이터를 추가
+insert into customer_backup 
+select * from customer where customer_id > 10;
