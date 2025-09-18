@@ -33,23 +33,13 @@ with right_col:
     if st.session_state.get("show_list", False):
         # 회원 리스트 테이블
         for i, row in st.session_state.members.iterrows():
-            col1, col2, col3, col4 = st.columns([2, 2, 1, 1])
+            col1, col2  = st.columns([2, 2])
             with col1:                
                 if st.button(str(row["회원아이디"]), key=f"id_{i}"):
                     st.session_state.selected_member_index = i
             with col2:
                 if st.button(row["회원이름"], key=f"name_{i}"):
                     st.session_state.selected_member_index = i
-            # with col3:
-            #     if st.button("수정", key=f"edit_{i}"):
-            #         st.session_state.selected_member_index = i
-            #         st.info(f"{row['회원이름']} 수정 준비")
-            # with col4:
-            #     if st.button("삭제", key=f"del_{i}"):
-            #         st.session_state.members = st.session_state.members.drop(i).reset_index(drop=True)
-            #         st.success(f"{row['회원이름']} 삭제됨")
-            #         st.session_state.selected_member_index = None
-            #         st.experimental_rerun()
 
         st.divider()
 
