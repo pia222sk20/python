@@ -55,13 +55,13 @@ def update_customer(customer_id, name):
         cur.execute(sql, (name,customer_id)  )    
     conn.commit()
     print(f'업데이트 되었습니다.{customer_id} {name}')
-    
+
 def delete_customer(customer_id):
-    sql = 'delete from customer where customer_id=%'
+    sql = 'delete from customer where customer_id=%s'
     with conn.cursor() as cur:
         cur.execute(sql,customer_id)
     conn.commit()
-    print(f'삭제되었습니다. {customer_id}')
+    print(f'삭제되었습니다. {customer_id}') 
 
 # 3.메소드
     # 회원가입
