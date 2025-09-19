@@ -20,5 +20,21 @@ where c.use_yn ='Y'
 -- 구매정보와 상품 분류를 연결
 -- 전자대신에 전자제품처럼 보기좋게 코드마스터에서 조인해서 출력
 -- buytbl , code_master
-select * from buytbl;
+select
+b.userID,
+b.prodName,
+c.code_name as group_name,
+b.price,
+b.amount
+from buytbl b
+left join code_master c
+	on c.code_type='GRPN'
+	and c.code_value = b.groupName
+where c.use_yn = 'Y'
+order by c.display_order 
+;
+
+-- usertbl  buytbl 연결 회원별 구매내역
+-- 두 테이블을 회원정보 기준으로 회원정보가 누락없이 모드 출력
+-- 각 회원별로 구매액 총합, 평균, 구매횟수
 
