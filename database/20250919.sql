@@ -1,5 +1,6 @@
 use sqldb;
 -- 공통코드 테이블 생성
+drop table if exists code_master;
 CREATE TABLE code_master (
     code_type CHAR(4) NOT NULL, -- 코드 분류 (예: ADDR, MOB1, GRPN)
     code_value CHAR(10) NOT NULL, -- 코드 값 (예: 서울, 011, 전자)
