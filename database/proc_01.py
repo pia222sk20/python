@@ -16,11 +16,11 @@ conn = pymysql.connect(
         password = os.getenv('DB_PASSWORD'),
         database='sqldb'
     )
-with conn.cursor() as cursor:
-    cursor.callproc('AddCodeWithTransaction',['ADDR','서울','서울특별시',0,'Y'])
-    for row in cursor.fetchall():
-        print(row)
-conn.commit()
-conn.close()    
+with conn as conn:
+    with conn.cursor() as cursor:
+        cursor.callproc('AddCodeWithTransaction',['PRO','P10','소',0,'Y'])
+        for row in cursor.fetchall():
+            print(row)
+    conn.commit()
 
 # 프로시져 호출

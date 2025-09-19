@@ -25,7 +25,7 @@ BEGIN
 	else
 		start transaction;
         insert into code_master
-        values(p_code_type,p_code_value,p_code_name,p_diplay_order,p_use_yn);
+        values(p_code_type,p_code_value,p_code_name,p_display_order,p_use_yn);
         commit;
         select 'code added success' as message;
     end if;
