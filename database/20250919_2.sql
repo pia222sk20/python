@@ -133,4 +133,16 @@ call ManageCode('ADDR','대전','대전광역시',7,'Y','delete');
 -- invalide action! update or insert
 -- ADDR에 부산코드가 없음
 select * from code_master where code_type = 'ADDR';
+-- 부산, 부산광역시  공통코드에 추가
+call ManageCode('ADDR','부산','부산광역시',6,'Y','insert');
+select * from code_master where code_type = 'ADDR';
+-- 수정
+call ManageCode('ADDR','서울','서울특별시',0,'Y','update');
+select * from code_master where code_type = 'ADDR';
+
+-- 구매내역 집계 프로시져
+-- 트랜잭션 에러처리
+
+
+
 
