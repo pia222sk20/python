@@ -70,4 +70,24 @@ order by c.display_order
 
 -- 통신사 코드 추가
 -- mobile1 을 code_master 의 MOB1에 해당하는 code_name 연결해서 통신사까지 출력
-select * from code_master;
+select
+u.name,
+c.code_name as addr_name,
+b.prodName,
+b.price,
+b.amount,
+cm.code_name
+from usertbl u
+left join buytbl b
+	on u.userID = b.userID
+left join code_master c
+	on c.code_type = 'ADDR'
+    and c.code_value = u.addr
+left join code_master cm
+	on cm.code_type = 'MOB1'
+    and cm.code_value = u.mobile1
+order by u.name
+;
+
+-- 상품분류 코드 추가
+-- groupname을 code_master의 GRPN코드와 연결하고 총 구매금액 계산
