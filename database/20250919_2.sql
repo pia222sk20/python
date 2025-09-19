@@ -117,3 +117,6 @@ where
 	c.use_yn='Y' or cm.use_yn='Y' or cmt.use_yn='Y'
 order by u.name
 ;
+
+-- 뷰 생성이후 사용
+select * from user_buy_code_tbl;
