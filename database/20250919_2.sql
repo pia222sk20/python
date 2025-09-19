@@ -17,3 +17,8 @@ left join code_master c
 where c.use_yn ='Y'    
 ;    
 
+-- 구매정보와 상품 분류를 연결
+-- 전자대신에 전자제품처럼 보기좋게 코드마스터에서 조인해서 출력
+-- buytbl , code_master
+select * from buytbl;
+
