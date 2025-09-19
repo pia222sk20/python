@@ -68,3 +68,6 @@ left join code_master c
 order by c.display_order
 ;
 
+-- 통신사 코드 추가
+-- mobile1 을 code_master 의 MOB1에 해당하는 code_name 연결해서 통신사까지 출력
+select * from code_master;
