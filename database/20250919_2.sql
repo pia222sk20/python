@@ -38,3 +38,33 @@ order by c.display_order
 -- 두 테이블을 회원정보 기준으로 회원정보가 누락없이 모드 출력
 -- 각 회원별로 구매액 총합, 평균, 구매횟수
 
+select
+u.userid ,
+u.name,
+sum(b.price) total_price,
+round(avg(b.price),2) avg_price,
+count(*) cnt
+from usertbl u
+join buytbl b
+	on u.userID = b.userID
+group by u.userid    
+order by total_price desc, avg_price desc, cnt desc
+;
+
+-- 공통코드에서 주소와 매핑
+-- 공통코드에 있는 정보를 이용해서 출력
+select
+u.name,
+c.code_name as addr_name,
+b.prodName,
+b.price,
+b.amount
+from usertbl u
+left join buytbl b
+	on u.userID = b.userID
+left join code_master c
+	on c.code_type = 'ADDR'
+    and c.code_value = u.addr
+order by c.display_order
+;
+
