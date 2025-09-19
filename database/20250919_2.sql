@@ -120,3 +120,5 @@ order by u.name
 
 -- 뷰 생성이후 사용
 select * from user_buy_code_tbl;
+-- GetUserList 프로시져 생성후
+call GetUserList();
