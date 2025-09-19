@@ -152,10 +152,8 @@ where u.addr = '경남'
 
 -- GetPurchaseSummaryByAddr 프로시져 생성후
 call GetPurchaseSummaryByAddr(Null);
-
-
-
 -- 트랜잭션 에러처리
+call AddCodeWithTransaction('ADDR','서울','서울특별시',0,'Y');
 
 
 
