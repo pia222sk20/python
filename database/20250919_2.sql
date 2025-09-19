@@ -122,3 +122,8 @@ order by u.name
 select * from user_buy_code_tbl;
 -- GetUserList 프로시져 생성후
 call GetUserList();
+-- GetUserByAddr  프로시져 생성후
+call GetUserByAddr('경남');
+call GetUserByAddr('');
+call GetUserByAddr(null);
+-- call GetUserByAddr();  매개변수는 반드시 값을 줘야함
