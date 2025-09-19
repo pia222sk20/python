@@ -91,3 +91,28 @@ order by u.name
 
 -- 상품분류 코드 추가
 -- groupname을 code_master의 GRPN코드와 연결하고 총 구매금액 계산
+select
+u.userID,
+u.name,
+c.code_name as addr_name,
+b.prodName,
+b.price,
+b.amount,
+cm.code_name,
+cmt.code_name
+from usertbl u
+left join buytbl b
+	on u.userID = b.userID
+left join code_master c
+	on c.code_type = 'ADDR'
+    and c.code_value = u.addr
+left join code_master cm
+	on cm.code_type = 'MOB1'
+    and cm.code_value = u.mobile1
+left join code_master cmt
+	on cmt.code_type='GRPN'
+	and cmt.code_value = b.groupname
+where 
+	c.use_yn='Y' or cm.use_yn='Y' or cmt.use_yn='Y'
+order by u.name
+;
