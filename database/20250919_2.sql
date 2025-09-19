@@ -127,3 +127,10 @@ call GetUserByAddr('경남');
 call GetUserByAddr('');
 call GetUserByAddr(null);
 -- call GetUserByAddr();  매개변수는 반드시 값을 줘야함
+
+-- ManageCode 프로시져 생성후
+call ManageCode('ADDR','대전','대전광역시',7,'Y','delete');
+-- invalide action! update or insert
+-- ADDR에 부산코드가 없음
+select * from code_master where code_type = 'ADDR';
+
