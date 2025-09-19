@@ -151,7 +151,7 @@ where u.addr = '경남'
 ;
 
 -- GetPurchaseSummaryByAddr 프로시져 생성후
-call GetPurchaseSummaryByAddr('서울');
+call GetPurchaseSummaryByAddr(Null);
 
 
 

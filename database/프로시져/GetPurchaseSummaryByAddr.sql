@@ -7,7 +7,7 @@ BEGIN
 	from usertbl u
     join buytbl b
 		on u.userid = b.userid
-	where u.addr = p_addr;
+	where u.addr = p_addr or p_addr is Null;
     
     if v_total_count =0 then
 		select 'No purchase data' as message;
@@ -23,7 +23,7 @@ BEGIN
 			on u.userid=b.userid
 		left join code_master c
 			on c.code_type='ADDR' and c.code_value = u.addr
-		where u.addr = p_addr
+		where u.addr = p_addr or p_addr is Null
         group by u.userid, u.name, c.code_name
         order by total_price desc;
 	end if;
