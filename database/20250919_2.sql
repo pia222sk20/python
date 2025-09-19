@@ -98,8 +98,9 @@ c.code_name as addr_name,
 b.prodName,
 b.price,
 b.amount,
-cm.code_name,
-cmt.code_name
+b.price * b.amount as total_price,
+cm.code_name as code_name_mob1 ,
+cmt.code_name as code_name_grpn
 from usertbl u
 left join buytbl b
 	on u.userID = b.userID
