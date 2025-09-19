@@ -141,6 +141,20 @@ call ManageCode('ADDR','서울','서울특별시',0,'Y','update');
 select * from code_master where code_type = 'ADDR';
 
 -- 구매내역 집계 프로시져
+-- 서울지역에서 구매건수
+select 
+count(*)
+from usertbl u
+join buytbl b
+	on u.userID = b.userID
+where u.addr = '경남'
+;
+
+-- GetPurchaseSummaryByAddr 프로시져 생성후
+call GetPurchaseSummaryByAddr('서울');
+
+
+
 -- 트랜잭션 에러처리
 
 

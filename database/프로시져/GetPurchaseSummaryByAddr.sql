@@ -17,7 +17,7 @@ BEGIN
             u.name,
             c.code_value as addr_name,
             count(b.num) as purchase_count,
-            sum(b.price * b.mount) as total_price
+            sum(b.price * b.amount) as total_price
         from usertbl u
         join buytbl b
 			on u.userid=b.userid
