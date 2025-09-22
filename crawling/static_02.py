@@ -24,11 +24,11 @@ store_lists = []
 for row in sotre_rows:        
     store_lists.append(
         (
-        row.select('td')[0].text.strip(),
-        row.select('td')[1].text.strip(),
-        row.select('td')[2].text.strip(),
-        row.select('td')[3].text.strip(),
-        row.select('td')[5].text.strip()
+            row.select('td')[0].text.strip(),
+            row.select('td')[1].text.strip(),
+            row.select('td')[2].text.strip(),
+            row.select('td')[3].text.strip(),
+            row.select('td')[5].text.strip()
         )
     )    
 print(store_lists)    

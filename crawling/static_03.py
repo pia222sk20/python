@@ -15,12 +15,14 @@ def get_connection():
         database='shopinfo'
     )
 
+import coffedb
 with get_connection() as conn:
     with conn.cursor() as cur:
         sql = '''
             insert into shop_base_tbl
-	            values(null,'?','?','?','?','?')
+	            values(null,%s,%s,%s,%s,%s)
             '''
         # cur.execute(sql,( , , , ,  )  )
-        cur.executemany
+        cur.executemany(sql,coffedb.get_data())  # row를 구성하는 튜플들의 리스트
+    conn.commit()
     
