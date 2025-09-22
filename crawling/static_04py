@@ -13,7 +13,9 @@ def get_connection():
         database='shopinfo'
     )
 import crawlingcoffe
-for page_num in range(1,47):
+# terminal에서 pip install tqdm
+import tqdm
+for page_num in tqdm.tqdm(range(1,47)):
     datas = crawlingcoffe.get_data(page_num)
     with get_connection() as conn:
         with conn.cursor() as cur:
