@@ -28,3 +28,8 @@ for idx,row in enumerate(sotre_rows):
     print(row.select('td')[3].text.strip())  # 주소
     print(row.select('td')[5].text.strip())  # 전화번호
     print('*'*100)    
+
+# DataBase 접속
+# insert 쿼리문을 이용해서 수집한 데이터를 DB에 저장
+# DB 접속
+    

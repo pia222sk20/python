@@ -1,0 +1,22 @@
+# DataBase 접속
+# insert 쿼리문을 이용해서 수집한 데이터를 DB에 저장
+# DB 접속
+
+# pip install pymysql # mysql을 접속할 수 있는 라이브러리
+# pip install dotenv  # 환경변수 .env를 로드할수 있는 라이브러리
+import pymysql
+from dotenv import load_dotenv
+import os
+# .env 로드
+load_dotenv()
+
+# 1. DB 연결
+def get_connection():
+    return pymysql.connect(
+        host = os.getenv('DB_HOST'),
+        user = os.getenv('DB_USER'),
+        password = os.getenv('DB_PASSWORD'),
+        database='shopinfo'
+    )
+
+    
