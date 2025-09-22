@@ -13,20 +13,20 @@ def get_connection():
         database='shopinfo'
     )
 import crawlingcoffe
-
-datas = crawlingcoffe.get_data(1)
-with get_connection() as conn:
-    with conn.cursor() as cur:
-        for data in datas:
-            try:
-                sql = 'insert into shop_base2_tbl values(%s,%s,%s,%s,%s)'
-                cur.execute(sql, (data[0],data[1],data[2],data[3],data[4]))
-            except pymysql.err.IntegrityError:
-                sql = '''update shop_base2_tbl
-                            set shop_state=%s, shop_addr=%s,shop_phone_number=%s
-                        where shop_area=%s and shop_name=%s
-                '''
-                cur.execute(sql, (data[2],data[3],data[4],data[0],data[1]))
-                conn.commit()
-            else:
-                conn.commit()
+for page_num in range(1,47):
+    datas = crawlingcoffe.get_data(page_num)
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            for data in datas:
+                try:
+                    sql = 'insert into shop_base2_tbl values(%s,%s,%s,%s,%s)'
+                    cur.execute(sql, (data[0],data[1],data[2],data[3],data[4]))
+                except pymysql.err.IntegrityError:
+                    sql = '''update shop_base2_tbl
+                                set shop_state=%s, shop_addr=%s,shop_phone_number=%s
+                            where shop_area=%s and shop_name=%s
+                    '''
+                    cur.execute(sql, (data[2],data[3],data[4],data[0],data[1]))
+                    conn.commit()
+                else:
+                    conn.commit()
