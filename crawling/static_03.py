@@ -16,13 +16,13 @@ def get_connection():
     )
 
 import crawlingcoffe
-with get_connection() as conn:
-    with conn.cursor() as cur:
-        sql = '''
-            insert into shop_base_tbl
-	            values(null,%s,%s,%s,%s,%s)
-            '''
-        # cur.execute(sql,( , , , ,  )  )
-        cur.executemany(sql,crawlingcoffe.get_data())  # row를 구성하는 튜플들의 리스트
-    conn.commit()
-    
+for page_num in range(1,47):
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            sql = '''
+                insert into shop_base_tbl
+                    values(null,%s,%s,%s,%s,%s)
+                '''
+            # cur.execute(sql,( , , , ,  )  )
+            cur.executemany(sql,crawlingcoffe.get_data(page_num))  # row를 구성하는 튜플들의 리스트
+        conn.commit()  
