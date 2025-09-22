@@ -20,9 +20,11 @@ soup = BeautifulSoup(response.text,'html.parser')
 str_table_rows = '#contents > div.content > fieldset > fieldset > div.tableType01 > table > tbody > tr'
 # soup.select('tbody > tr')  tbody가 한개 밖에 없어서 가능 만약 여러개면 가장 먼저 만나는 tbody
 sotre_rows = soup.select(str_table_rows)
-print(sotre_rows[0])
-print(soup.select('td')[0].text.strip())  # 지역
-print(soup.select('td')[1].text.strip())  # 매장명
-print(soup.select('td')[2].text.strip())  # 현황
-print(soup.select('td')[3].text.strip())  # 주소
-print(soup.select('td')[5].text.strip())  # 전화번호
+for idx,row in enumerate(sotre_rows):    
+    print(idx+1)
+    print(row.select('td')[0].text.strip())  # 지역
+    print(row.select('td')[1].text.strip())  # 매장명
+    print(row.select('td')[2].text.strip())  # 현황
+    print(row.select('td')[3].text.strip())  # 주소
+    print(row.select('td')[5].text.strip())  # 전화번호
+    print('*'*100)    
