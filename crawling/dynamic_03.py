@@ -21,9 +21,17 @@ driver.get(url)
 print('사이트 접속했습니다.')
 # 사이트가 로드될때까지 기다린다.
 time.sleep(1)
+
+# 더보기 클릭(국산모델 top10)
+#   //*[@id="autodanawa_gridC"]/div[3]/article/main/div/div[3]/div[1]/a
+more = driver.find_element(By.XPATH,'//*[@id="autodanawa_gridC"]/div[3]/article/main/div/div[3]/div[1]/a')
+more.click()
+time.sleep(2)
+# 기간선택 레디오 버튼
 radio =  driver.find_element(By.CSS_SELECTOR,"input[name='rdoMonthPeriod'][value='period']")
 radio.click()
 time.sleep(1)
+
 select = Select(driver.find_element(By.ID,'selMonthFrom'))
 select.select_by_value('2023')
 time.sleep(1)
@@ -41,6 +49,12 @@ select.select_by_value('12')
 btn = driver.find_element(By.XPATH,'//*[@id="monthPeriodDiv"]/span[2]/input')
 driver.execute_script("arguments[0].click()", btn)  # 사용자 마우스 클릭 이벤트를 발생
 # driver.execute_script("selectRecord('period');")  # 직접 실행
+
+time.sleep(3)
+
+
+soup = BeautifulSoup(driver.page_source,'html.parser')  #--> 셀리니움 문법을 이용해서 원하는 태그의 속한 텍스트를 추출
+
 
 time.sleep(10)
 # 브라우져 종료
