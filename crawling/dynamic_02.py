@@ -52,11 +52,11 @@ try:
             )
             print(f"'{month_value}월' 데이터 로딩 완료.")
             # 브라우져의 텍스트를 추출
-            soup = BeautifulSoup(driver.page_source,'html_parser')
+            soup = BeautifulSoup(driver.page_source,'html.parser')
             tr_datas = soup.select('#autodanawa_gridC > div.gridMain > article > main > div > div:nth-child(3) > div.left > table > tbody > tr')
             for row in tr_datas:
                 td_datas = row.select('td')
-                print(td_datas[0], td_datas[1],td_datas[2],td_datas[3])
+                print(td_datas[0].text, td_datas[1].text,td_datas[2].text,td_datas[3].text)
             # (여기에 각 월의 데이터를 수집하는 코드를 추가할 수 있습니다)
             
             time.sleep(1) # 시각적 확인을 위한 짧은 대기
