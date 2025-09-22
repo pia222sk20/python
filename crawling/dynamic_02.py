@@ -17,7 +17,7 @@ driver = webdriver.Chrome(service=service)
 
 # 사이트 접속
 driver.get(url)
-driver.maximize_window() # 전체 화면으로 실행  옵션
+# driver.maximize_window() # 전체 화면으로 실행  옵션
 print('사이트 접속했습니다.')
 # 사이트가 로드될때까지 기다린다.
 try:
@@ -30,7 +30,7 @@ try:
     print(f"1. '{year_to_select}년'을 선택합니다.")
     year_select_element = driver.find_element(By.ID, 'selMonth')
     select_year = Select(year_select_element)
-    select_year.select_by_value(year_to_select)
+    select_year.select_by_value(year_to_select)    
     
     # 년도 선택 후, 데이터가 로드될 시간을 줌
     time.sleep(2)
@@ -40,7 +40,7 @@ try:
         try:
             # StaleElementReferenceException을 피하기 위해 매번 요소를 새로 찾습니다.
             month_value = f"{month:02d}" # 월을 '01', '02' 형태의 문자열로 변환
-            print(f"==> '{month_value}월'을 선택합니다.")            
+            # print(f"==> '{month_value}월'을 선택합니다.")            
             month_select_element = driver.find_element(By.ID, 'selDay')
             select_month = Select(month_select_element)
             select_month.select_by_value(month_value)
@@ -50,13 +50,17 @@ try:
             WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, ".recordTable.short tbody tr"))
             )
-            print(f"'{month_value}월' 데이터 로딩 완료.")
+            # print(f"'{month_value}월' 데이터 로딩 완료.")
             # 브라우져의 텍스트를 추출
             soup = BeautifulSoup(driver.page_source,'html.parser')
+            # 국산 브랜드 Top5
             tr_datas = soup.select('#autodanawa_gridC > div.gridMain > article > main > div > div:nth-child(3) > div.left > table > tbody > tr')
             for row in tr_datas:
                 td_datas = row.select('td')
-                print(td_datas[0].text, td_datas[1].text,td_datas[2].text,td_datas[3].text)
+                print(td_datas[0].text.strip(), # 번호
+                      td_datas[1].text.strip(), # 브랜드 명
+                      td_datas[2].text.strip(), # 판매대수
+                      td_datas[3].text.strip()) # 점유율
             # (여기에 각 월의 데이터를 수집하는 코드를 추가할 수 있습니다)
             
             time.sleep(1) # 시각적 확인을 위한 짧은 대기
