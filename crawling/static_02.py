@@ -20,16 +20,15 @@ soup = BeautifulSoup(response.text,'html.parser')
 str_table_rows = '#contents > div.content > fieldset > fieldset > div.tableType01 > table > tbody > tr'
 # soup.select('tbody > tr')  tbody가 한개 밖에 없어서 가능 만약 여러개면 가장 먼저 만나는 tbody
 sotre_rows = soup.select(str_table_rows)
-for idx,row in enumerate(sotre_rows):    
-    print(idx+1)
-    print(row.select('td')[0].text.strip())  # 지역
-    print(row.select('td')[1].text.strip())  # 매장명
-    print(row.select('td')[2].text.strip())  # 현황
-    print(row.select('td')[3].text.strip())  # 주소
-    print(row.select('td')[5].text.strip())  # 전화번호
-    print('*'*100)    
-
-# DataBase 접속
-# insert 쿼리문을 이용해서 수집한 데이터를 DB에 저장
-# DB 접속
-    
+store_lists = []
+for row in sotre_rows:        
+    store_lists.append(
+        (
+        row.select('td')[0].text.strip(),
+        row.select('td')[1].text.strip(),
+        row.select('td')[2].text.strip(),
+        row.select('td')[3].text.strip(),
+        row.select('td')[5].text.strip()
+        )
+    )    
+print(store_lists)    
