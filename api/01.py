@@ -18,4 +18,8 @@ url = f'https://api.odcloud.kr/api/ApplyhomeInfoDetailSvc/v1/getAPTLttotPblancDe
 # }
 response = requests.get(url)
 # print(response.text)
+data_dict = response.json()
+print(data_dict.keys())
 import json
+json_print = json.dumps(data_dict,indent=4,ensure_ascii=False)
+print(json_print)
