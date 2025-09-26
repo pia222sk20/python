@@ -5,7 +5,7 @@
 
 from dotenv import load_dotenv
 import os
-import requests
+import requests 
 # .env 로드
 load_dotenv()
 P_KEY = os.getenv('PUBLIC_DECODE_KEY')
