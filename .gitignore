@@ -7,3 +7,7 @@
 *.splite3
 *.db
 *.__pycache__
+
+# 디렉토리 무시
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
