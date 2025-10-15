@@ -12,9 +12,4 @@
 .ipynb_checkpoints/
 **/.ipynb_checkpoints/
 
-credit.csv
-
-doc
-
-test.py
-test2.py
+data/
