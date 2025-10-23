@@ -17,3 +17,5 @@ data/
 extracted_files/
 
 *.zip
+
+*.txt
