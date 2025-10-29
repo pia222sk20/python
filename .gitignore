@@ -32,3 +32,11 @@ C:/python_src2/딥러닝/cifar-10-python.tar.gz
 딥러닝/cifar-10-python.tar.gz
 딥러닝/cifar_.pth
 딥러닝/CIFAR.pth
+딥러닝/MNIST/raw/t10k-images-idx3-ubyte
+딥러닝/MNIST/raw/t10k-images-idx3-ubyte.gz
+딥러닝/MNIST/raw/t10k-labels-idx1-ubyte
+딥러닝/MNIST/raw/t10k-labels-idx1-ubyte.gz
+딥러닝/MNIST/raw/train-images-idx3-ubyte
+딥러닝/MNIST/raw/train-images-idx3-ubyte.gz
+딥러닝/MNIST/raw/train-labels-idx1-ubyte
+딥러닝/MNIST/raw/train-labels-idx1-ubyte.gz
